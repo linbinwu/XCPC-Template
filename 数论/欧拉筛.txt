@@ -1,0 +1,17 @@
+bool prime[MAX_N];
+int Prime[MAX_N];
+int num = 0;
+
+void make_prime() {
+	memset(prime, true, sizeof(prime));
+	prime[0] = prime[1] = 0;
+	for (int i = 2; i < MAX_N; i++) {
+		if (prime[i])
+			Prime[num++] = i;
+		for (int j = 0; j < num && i * Prime[j] < MAX_N; j++) {
+			prime[i * Prime[j]] = 0;
+			if (!(i % Prime[j]))break;
+		}
+	}
+	return;
+}

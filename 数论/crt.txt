@@ -1,0 +1,25 @@
+ll exgcd(ll a, ll b, ll &x, ll &y) {
+    if (!b) {
+        x = 1, y = 0;
+        return a;
+    }
+    ll res = exgcd(b, a % b, x, y);
+    ll t = y;
+    y = x - a / b * y;
+    x = t;
+    return res;
+}
+
+ll crt(ll r[], ll m[], int N) {
+    //res = (sigma ai * Mi * invMi) % M
+    ll M = 1, res = 0;
+    for (int i = 1; i <= N; i++) M *= m[i];
+    for (int i = 1; i <= N; i++) {
+        ll Mi = M / m[i];
+        ll x = 0, y = 0;
+        exgcd(Mi, m[i], x, y);
+        x = (x % m[i] + m[i]) % m[i];
+        res = (res + r[i] * Mi % M * x % M) % M;
+    }
+    return (res % M + M) % M;
+}

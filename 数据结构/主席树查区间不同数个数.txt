@@ -1,0 +1,46 @@
+//主席树查询区间不同数的个数
+void build(int &now, int l, int r) {
+    if (!now) now = ++tot;
+    sum[now] = 0;
+    if (l < r) {
+        build(lc[now], l, m);
+        build(rc[now], m + 1, r);
+    }
+}
+
+void update(int &now, int pre, int l, int r, int p, int v) {
+    now = ++tot;
+    sum[now] = sum[pre] + v;
+    lc[now] = lc[pre], rc[now] = rc[pre];
+    if (l < r) {
+        if (p <= m) update(lc[now], lc[pre], l, m, p, v);
+        else update(rc[now], rc[pre], m + 1, r, p, v);
+    }
+}
+
+int query(int now, int l, int r, int ql, int qr) {
+    if (ql <= l && r <= qr) return sum[now];
+    int res = 0;
+    if (ql <= m) res += query(lc[now], l, m, ql, qr);
+    if (qr > m) res += query(rc[now], m + 1, r, ql, qr);
+    return res;
+}
+
+int main() {
+    cin >> N;
+    build(rt[0], 1, N);
+    for (int i = 1; i <= N; i++) {
+        int x; cin >> x;
+        a[i] = last[x];
+        update(rt[i], rt[i - 1], 1, N, i, 1);
+        if (a[i]) update(rt[i], rt[i], 1, N, a[i], -1); //每次删去上次出现
+        last[x] = i;
+    }
+    cin >> M;
+    while (M--) {
+        int l, r; cin >> l >> r;
+        cout << query(rt[r], 1, N, l, N) << endl;
+    }
+
+    return 0;
+}

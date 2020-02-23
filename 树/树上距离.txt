@@ -1,0 +1,30 @@
+struct Distance {//树剖版本lca
+    ll dis[MAX];
+    int son[MAX], siz[MAX], top[MAX], fa[MAX], dep[MAX];
+    void dfs(int u, int par, ll d) {
+        dep[u] = dep[par] + 1, siz[u] = 1, fa[u] = par, dis[u] = d;
+        int max_son = -1;
+        for (int i = G1.head[u], v = G1.e[i].to; i; i = G1.e[i].nxt, v = G1.e[i].to)
+            if (v != par) {
+                dfs(v, u, d + G1.e[i].w);
+                siz[u] += siz[v];
+                if (max_son < siz[v])
+                    son[u] = v, max_son = siz[v];
+            }
+    }
+    void dfs2(int u, int topf) {
+        top[u] = topf;
+        if (!son[u]) return;
+        dfs2(son[u], topf);
+        for (int i = G1.head[u], v = G1.e[i].to; i; i = G1.e[i].nxt, v = G1.e[i].to)
+            if (v != fa[u] && v != son[u]) dfs2(v, v);
+    }
+    int lca(int x, int y) {
+        while (top[x] != top[y]) {
+            if (dep[top[x]] < dep[top[y]]) swap(x, y);
+            x = fa[top[x]];
+        }
+        return dep[x] < dep[y] ? x : y;
+    }
+    ll getDis(int x, int y) { return dis[x] + dis[y] - 2 * dis[lca(x, y)]; }
+} dis;

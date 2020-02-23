@@ -1,0 +1,114 @@
+//一个人在一条线段来回走(遇到线段端点就转变方向)，现在他从起点出发，并有一个初始方向，
+//每次都可以走1, 2, 3 ..... m步，都有对应着一个概率。问你他走到终点的概率
+
+//方向问题很是问题，我们可以把线段改造成环，具体我们可以把除端点以外的点作为另一个半圆 和原来的线段拼成一个环，
+//方向就单一了，用dp[i]表示在i点的时候到达终点的期望步数，则dp[i]=dp[(i+1)%N]*p1+E[(i+2)%N]*p2+…E[(i+m)%N]*pm+1。
+//这里N为变成环以后的点数。注意到有些点是无法到达的，自然这些点的期望是无意义的，可以理解成正无穷，在实际列方程的         时候，我们不需要把这些点列入方程中去，这样避免解方程的时候出现问题。所以我们可以先从起点进行bfs，将能到达的点             进行标号， 搜完后，有标号的点都是方程的未知数。然后对每个能到达的点列一个方程，高斯消元解出dp[起点]就是答案。
+
+
+//高斯消元白书模板
+//n ： 未知数个数，   a[][]为增广矩阵
+//把解放在    a[][n]中
+bool gauss(double a[][MAX], int n) {
+    int i, j, k, r;
+    for (i = 0; i < n; i++) {
+        r = i;
+        for (j = i + 1; j < n; j++)
+            if (fabs(a[j][i]) > fabs(a[r][i]))
+                r = j;
+
+        if (fabs(a[r][i]) < eps)
+            return 0;
+
+        if (r != i)
+            for (j = 0; j <= n; j++)
+                swap(a[r][j], a[i][j]);
+
+
+        //根据精度需要选择以下其一：
+        //低精度
+//        for (k = i + 1; k < n; k++) {
+//            r = a[k][i] / a[i][j];
+//            for (j = i; j <= n; j++)
+//                a[k][j] -= r * a[i][j];
+//        }
+        //
+
+        //高精度
+        for (j = n; j >= i; j--)
+            for (k = i + 1; k < n; k++)
+                a[k][j] -= a[k][i] / a[i][i] * a[i][j];
+        //
+    }
+
+    //回代过程
+    for (i = n - 1; i >= 0; i--) {
+        for (j = i + 1; j < n; j++)
+            a[i][n] -= a[j][n] * a[i][j];
+        a[i][n] /= a[i][i];
+    }
+    return 1;
+}
+
+int T, N, M, Y, X, D;
+double a[MAX][MAX], p[MAX];
+int id, idx[MAX];
+
+void bfs(int s) {
+    queue<int> q;
+    q.push(s);
+    id = 0;
+    memset(idx, -1, sz(idx));
+    idx[s] = id++;
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        for (int i = 1; i <= M; i++) {
+            if (abs(p[i]) < eps) continue;
+            int v = (u + i) % N;
+            if (idx[v] == -1) {
+                idx[v] = id++;
+                q.push(v);
+            }
+        }
+    }
+}
+
+void solve() {
+    if (X == Y) {
+        printf("0.00\n");
+        return;
+    }
+    N = (N - 1) << 1;
+    if (D == 1) X = N - X;
+    bfs(X);
+    if (idx[N - X] == -1 && idx[X] == -1) {
+        printf("Impossible !\n");
+        return;
+    }
+    memset(a, 0, sz(a));
+    for (int i = 0; i < N; i++) {
+        if (idx[i] == -1) continue;
+        a[idx[i]][idx[i]] = 1;
+        if (i == Y || i == N - Y) continue;
+        for (int j = 1; j <= M; j++) {
+            int v = (i + j) % N;
+            if (idx[v] != -1) {
+                a[idx[i]][idx[v]] -= p[j];
+                a[idx[i]][id] += j * p[j];
+            }
+        }
+    }
+    if (gauss(a, id)) printf("%.2lf\n", a[idx[X]][id]);
+    else printf("Impossible !\n");
+
+}
+
+int main() {
+    scanf("%d", &T);
+    while (T--) {
+        scanf("%d%d%d%d%d", &N, &M, &Y, &X, &D);
+        for (int i = 1; i <= M; i++) scanf("%lf", &p[i]), p[i] /= 100;
+        solve();
+    }
+    return 0;
+}
