@@ -1,0 +1,22 @@
+bool isPrime[MAX];
+int prime[MAX], num;
+int phi[MAX];
+
+void makePhi(int siz) {
+    phi[1] = 1; memset(isPrime, true, sz(isPrime));
+    isPrime[0] = isPrime[1] = num = 0;
+    for (int i = 2; i <= siz; i++) {
+        if (isPrime[i]) {
+            prime[++num] = i;
+            phi[i] = i - 1;
+        }
+        for (int j = 1; j <= num && i * prime[j] <= siz; j++) {
+            isPrime[i * prime[j]] = 0;
+            if (i % prime[j] == 0) {
+                phi[i * prime[j]] = phi[i] * phi[prime[j]];
+                break;
+            }
+            else phi[i * prime[j]] = phi[i] * phi[prime[j]];
+        }
+    }
+}

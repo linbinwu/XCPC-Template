@@ -2,9 +2,9 @@
 //a - b >= c    <->  b - a <= -c
 //a - b <= c    <->  a - b <= c
 //a - b == c    <->  a - b <= c && b - a <= -c
-//注意初始化+有时候需要超级源点0
+//注意初始化    有时候需要超级源点0
 
-bool spfa(int u) {
+bool spfa(int u) {//dfs跑差分约束最短路
     vis[u] = 1;
     for (int i = head[u], v = e[i].to; i; i = e[i].nxt, v = e[i].to)
         if (dis[u] + e[i].w < dis[v]) {

@@ -4,9 +4,9 @@ struct Distance {//树剖版本lca
     void dfs(int u, int par, ll d) {
         dep[u] = dep[par] + 1, siz[u] = 1, fa[u] = par, dis[u] = d;
         int max_son = -1;
-        for (int i = G1.head[u], v = G1.e[i].to; i; i = G1.e[i].nxt, v = G1.e[i].to)
+        for (int i = head[u], v = e[i].to; i; i = e[i].nxt, v = e[i].to)
             if (v != par) {
-                dfs(v, u, d + G1.e[i].w);
+                dfs(v, u, d + e[i].w);
                 siz[u] += siz[v];
                 if (max_son < siz[v])
                     son[u] = v, max_son = siz[v];
@@ -16,7 +16,7 @@ struct Distance {//树剖版本lca
         top[u] = topf;
         if (!son[u]) return;
         dfs2(son[u], topf);
-        for (int i = G1.head[u], v = G1.e[i].to; i; i = G1.e[i].nxt, v = G1.e[i].to)
+        for (int i = head[u], v = e[i].to; i; i = e[i].nxt, v = e[i].to)
             if (v != fa[u] && v != son[u]) dfs2(v, v);
     }
     int lca(int x, int y) {
@@ -28,3 +28,9 @@ struct Distance {//树剖版本lca
     }
     ll getDis(int x, int y) { return dis[x] + dis[y] - 2 * dis[lca(x, y)]; }
 } dis;
+
+
+int main(){
+    dis.dfs(1, 0, 0); dis.dfs2(1, 1);
+
+}

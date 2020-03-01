@@ -1,4 +1,4 @@
-int prim() {
+int prim() {//待更新，堆优化prim更优
     for (int i = 1; i <= N; i++) minn[i] = INF, vis[i] = 0;
     for (int i = head[1], v = e[i].to; i; i = e[i].nxt, v = e[i].to) minn[v] = min(minn[v], e[i].w);
     //default start point is 1

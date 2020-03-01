@@ -1,3 +1,5 @@
+//MlogM
+
 int pre[MAX], tot;
 
 struct edge {
