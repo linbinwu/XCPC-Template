@@ -26,6 +26,8 @@ ll exgcd(ll a, ll b, ll &x, ll &y) {
     return res;
 }
 
-ll x = 0, y = 0;
-exgcd(a, b, x, y);
-x = (x % b + b) % b;
+ll inv(ll a, ll b) {//b = mod
+    ll x = 0, y = 0;
+    exgcd(a, b, x, y);
+    x = (x % b + b) % b;
+}

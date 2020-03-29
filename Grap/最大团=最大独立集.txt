@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+#define INF 0x3f3f3f3f
+#define mp(x, y) make_pair(x, y)
+#define vi vector<int>
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> Pair;
+const int MAX = 55;
+
+struct MAX_CLIQUE {
+	static const int N = 105;
+
+	bool G[N][N];
+	int n, Max[N], Alt[N][N], ans;
+	int flag[N], tmp[N], num;//用于记录点
+
+	bool DFS(int cur, int tot) {
+		if (cur == 0) {
+			if (tot > ans) {
+				ans = tot;
+				/*
+				for (int i = 0; i < ans; i++)//记录哪些是最大团中的点
+					flag[i] = tmp[i];
+				*/
+				return 1;
+			}
+			return 0;
+		}
+		for (int i = 0; i < cur; i++) {
+			if (cur - i + tot <= ans) return 0;
+			int u = Alt[tot][i];
+			if (Max[u] + tot <= ans) return 0;
+			tmp[num++] = u;
+			int nxt = 0;
+			for (int j = i + 1; j < cur; j++)
+				if (G[u][Alt[tot][j]]) Alt[tot + 1][nxt++] = Alt[tot][j];
+			if (DFS(nxt, tot + 1))return 1;
+			/*
+			num--;
+			*/
+		}
+		return 0;
+	}
+
+	int MaxClique() {
+		ans = 0, memset(Max, 0, sizeof Max);
+		for (int i = n - 1; i >= 0; i--) {
+			int cur = 0;
+			/*
+			num = 0;
+			tmp[num++] = i;
+			*/
+			for (int j = i + 1; j < n; j++)
+				if (G[i][j])Alt[1][cur++] = j;
+			DFS(cur, 1);
+			Max[i] = ans;
+		}
+		return ans;
+	}
+}Group;
+
+int main() {
+	while (~scanf("%d", &Group.n) && Group.n) {
+		for (int i = 0; i < Group.n; i++)
+			for (int j = 0; j < Group.n; j++)
+				scanf("%d", &Group.G[i][j]);
+		printf("%d\n", Group.MaxClique());
+	}
+	return 0;
+}
