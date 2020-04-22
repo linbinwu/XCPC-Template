@@ -1,17 +1,10 @@
-bool isPrime[MAX];
-int prime[MAX], num;
-int mu[MAX];
-
+int vis[MAX], prime[MAX], num, mu[MAX];
 void makeMobius(int siz) {
-    mu[1] = 1; memset(isPrime, true, sz(isPrime));
-    isPrime[0] = isPrime[1] = num = 0;
+    mu[1] = 1, num = 0;
     for (int i = 2; i <= siz; i++) {
-        if (isPrime[i]) {
-            prime[++num] = i;
-            mu[i] = -1;
-        }
+        if (!vis[i]) prime[++num] = i, mu[i] = -1;
         for (int j = 1; j <= num && i * prime[j] <= siz; j++) {
-            isPrime[i * prime[j]] = 0;
+            vis[i * prime[j]] = 1;
             if (i % prime[j] == 0) {
                 mu[i * prime[j]] = 0;
                 break;
