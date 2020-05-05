@@ -14,7 +14,7 @@ void dijkstra(int s) {
     q.push(node{s, dis[s]});
     while (!q.empty()) {
         node p = q.top(); q.pop();
-        int u = p.now, d = p.d;
+        int u = p.now;
         if (vis[u]) continue;
         vis[u] = 1;
         for (int i = head[u], v = e[i].to; i; i = e[i].nxt, v = e[i].to)

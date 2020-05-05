@@ -1,3 +1,4 @@
+//倍增KFA
 vector<int> g[MAX];
 
 int anc[MAX][20];
