@@ -10,6 +10,12 @@ ll exgcd(ll a, ll b, ll &x, ll &y) {
     return res;
 }
 
+ll inv(ll a, ll b) {
+    ll x = 0, y = 0;
+    exgcd(a, b, x, y);
+    return x = (x % b + b) % b;
+}
+
 //r[]为余数, m为模数, 其中模数互质
 //M = pi(mi), Mi = M / mi, invMi = Mi % mi
 //ni满足是除了mi之外的倍数, 且模mi为ri
@@ -20,10 +26,7 @@ ll china(ll r[], ll m[], int N) {
     ll M = 1, res = 0;
     for (int i = 1; i <= N; i++) M *= m[i];
     for (int i = 1; i <= N; i++) {
-        ll Mi = M / m[i];
-        ll invMi = 0, y = 0;
-        exgcd(Mi, m[i], invMi, y);
-        invMi = (invMi % m[i] + m[i]) % m[i];
+        ll Mi = M / m[i], invMi = inv(Mi, m[i]);
         res = (res + r[i] * Mi % M * invMi % M) % M;
         //res = (res + mul(mul(r[i], Mi, M), invMi, M)) % M;按位乘
     }

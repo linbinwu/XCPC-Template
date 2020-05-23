@@ -1,3 +1,4 @@
+//存在逆元的充要条件为gcd(a, mod) = 1
 //mod为质数, 费马小定理求解
 #define inv(x,y) qpow(x,y-2,y)
 
@@ -26,7 +27,7 @@ ll exgcd(ll a, ll b, ll &x, ll &y) {
     return res;
 }
 
-ll inv(ll a, ll b) {//b = mod
+ll inv(ll a, ll b = mod) {
     ll x = 0, y = 0;
     exgcd(a, b, x, y);
     return x = (x % b + b) % b;

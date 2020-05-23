@@ -3,7 +3,7 @@ void topo() {
     for (int i = 1; i <= N; i++)
         if (!degree[i]) q.push(i);
     while (!q.empty()) {
-        int u = q.front();
+        int u = q.front(); q.pop();
         //
         for (auto &v: g[u]) {
             degree[v]--;

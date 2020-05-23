@@ -1,8 +1,7 @@
 //求解C(n, m) (mod p), 其中p为素数且较小
 //O(p+logp)∼O(logn)
-ll mod = p;
 
-ll qpow(ll a, ll b) {
+ll qpow(ll a, ll b, ll mod) {
     ll res = 1;
     while (b) {
         if (b & 1)
@@ -13,7 +12,7 @@ ll qpow(ll a, ll b) {
     return res;
 }
 
-ll C(ll n, ll m) {
+ll C(ll n, ll m, ll mod) {
     if (n < m) return 0;
     m = min(m, n - m);
     ll a = 1, b = 1;
@@ -22,7 +21,7 @@ ll C(ll n, ll m) {
     return a * qpow(b, mod - 2) % mod;
 }
 
-ll Lucas(ll n, ll m) {
+ll Lucas(ll n, ll m, ll mod) {
     if (m == 0) return 1;
-    return Lucas(n / mod, m / mod) * C(n % mod, m % mod) % mod;
+    return Lucas(n / mod, m / mod, mod) * C(n % mod, m % mod, mod) % mod;
 }
