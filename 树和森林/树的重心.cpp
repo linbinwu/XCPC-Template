@@ -18,3 +18,5 @@ void getRt(int u, int fa, int all) {//树的重心
     maxp[u] = max(maxp[u], all - siz[u]);//fa子树为all - siz[u]
     if (maxp[u] < maxp[rt]) rt = u;
 }
+
+maxp[rt = 0] = N; getRt(1, 0, N);

@@ -9,12 +9,12 @@ ll C(ll n, ll m) {
 
 //预处理后O(N)得到
 ll fac[MAX], inv[MAX];
-void init() {
+void init(int siz) {
     fac[0] = 1;
-    for (int i = 1; i <= (int)1e6; i++) {
+    for (int i = 1; i <= siz; i++)
         fac[i] = i * fac[i - 1] % mod;
-        inv[i] = qpow(fac[i], mod - 2);
-    }
+    inv[siz] = qpow(fac[siz], mod - 2);
+    for (int i = siz; i >= 1; i--) inv[i - 1] = inv[i] * i % mod;
 }
 
 ll C(ll n, ll m) {
