@@ -1,7 +1,7 @@
 //将多项式拆成(a1 * mod + a2) * (b1 * mod + b2)的形式
 //=>a1 * b1 * mod ^ 2 + (a2 * b1 + a1 * b2) * mod + a2 * b2
 //在利用DFT合并、IDFT合并，最终只需要4次DFT即可
-//精度1e14 
+//精度10^14
 
 
 const double PI = acos(-1);
