@@ -20,6 +20,10 @@ void getRt(int u, int fa, int all) {//求树的重心
 void calc(int u) {//具体题目具体分析
 //可以用store记录一下当前树所加的路径
 
+//若路径是有向的, 有时候要扫两边(从前往后, 从后往前)
+//如某括号题[USACO12NOV]Balanced Trees G(https://www.luogu.com.cn/problem/P3060)
+
+
 //最后结束的时候清空即可
 }
 

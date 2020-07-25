@@ -112,7 +112,7 @@ struct Splay {
         while (1) {
             if (k > sum[lc] && k <= sum[lc] + cnt[u]) {
                 splay(u, rt);
-                return val[u];
+                break;
             }
             if (k <= sum[lc]) u = lc;
             else {
@@ -120,6 +120,7 @@ struct Splay {
                 u = rc;
             }
         }
+        return val[u];
     }
     int upper(int v) {
         int u = rt, minn = 0x3f3f3f3f, p = 0;

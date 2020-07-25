@@ -10,7 +10,19 @@ vector<int> getNext(string s) {
     return nxt;
 }
 
-int N = strlen(s + 1), M = strlen(t + 1);
+int nxt[MAX];
+void getNext(string str) {
+    nxt[1] = 0;
+    int j = 0, len = str.length();
+    for (int i = 2; i <= len; i++) {
+        while (j && str[j + 1] != str[i]) j = nxt[j];
+        if (str[j + 1] == str[i]) j++;
+        nxt[i] = j;
+    }
+}
+
+int main() {
+    int N = strlen(s + 1), M = strlen(t + 1);
     int j = 0;
     for (int i = 1; i <= N; i++) {
         while (j && t[j + 1] != s[i]) j = nxt[j];
@@ -20,3 +32,4 @@ int N = strlen(s + 1), M = strlen(t + 1);
             j = nxt[j];
         }
     }
+}
