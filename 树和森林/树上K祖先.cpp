@@ -1,7 +1,7 @@
 //倍增KFA
-vector<int> g[MAX];
+vector<int> g[N];
 
-int anc[MAX][20];
+int anc[N][20];
 void dfs(int u, int fa) {
     anc[u][0] = fa;
     for (int i = 1; i <= 19; i++) anc[u][i] = anc[anc[u][i - 1]][i - 1];
@@ -21,8 +21,8 @@ int kthFa(int u, int k) {
 
 
 //树剖KFA
-int siz[MAX], son[MAX], dep[MAX], fa[MAX], top[MAX];
-int id[MAX], nodeOf[MAX], cnt;
+int siz[N], son[N], dep[N], fa[N], top[N];
+int id[N], nodeOf[N], cnt;
 void dfs(int u, int par) {
     dep[u] = dep[fa[u] = par] + (siz[u] = 1);
     for (auto &v: g[u])

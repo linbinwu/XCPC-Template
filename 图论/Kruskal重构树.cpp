@@ -11,10 +11,10 @@ struct Edge {
         //升序为(u, v)间多条路中最大边权最小值
         //降序为(u, v)间多条路中最小边权最大值
     }
-} E[MAX];
-vector<int> g[MAX];
-int pre[MAX], val[MAX], cnt;//cnt为kruskal重构树的点数, 点数最多为2N - 1
-int son[MAX], siz[MAX], top[MAX], fa[MAX], dep[MAX];
+} E[M];
+vector<int> g[N];
+int pre[N], val[N], cnt;//cnt为kruskal重构树的点数, 点数最多为2N - 1
+int son[N], siz[N], top[N], fa[N], dep[N];
 void dfs(int u, int par) {
     dep[u] = dep[fa[u] = par] + (siz[u] = 1);
     int max_son = -1;

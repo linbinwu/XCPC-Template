@@ -1,5 +1,5 @@
-int ch[MAX][2], fa[MAX], rev[MAX], siz[MAX];//基本内容
-int sum[MAX], val[MAX], tag[MAX];//另外要维护的
+int ch[N][2], fa[N], rev[N], siz[N];//基本内容
+int sum[N], val[N], tag[N];//另外要维护的
 #define lc  ch[u][0]
 #define rc  ch[u][1]
 #define identify(u) (ch[fa[u]][1] == u)

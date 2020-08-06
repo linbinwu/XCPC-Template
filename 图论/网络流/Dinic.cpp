@@ -1,13 +1,12 @@
 //理论复杂度O(n^2m), 求解二分图匹配问题时, 时间复杂度为O(m sqrt(n))
 struct Dinic {
-    static const int MAX_N = ...;//size
-    static const int INF   = 0x3f3f3f3f;
+    static const int N = ...;//size
     struct Edge { int from, to, cap, flow; };
     int n, m, s, t;
     vector<Edge> edges;
-    vector<int> G[MAX_N];
-    int dep[MAX_N], cur[MAX_N];
-    bool vis[MAX_N];
+    vector<int> G[N];
+    int dep[N], cur[N];
+    bool vis[N];
 
     void init(int siz) { n = siz; for (int i = 0; i < siz; i++) G[i].clear(); edges.clear(); }
 

@@ -1,6 +1,6 @@
 //不带权重的最大匹配, 复杂度O(nm)
-int used[MAX], match[MAX];
-vector<int> g[MAX];
+int used[N], match[N];
+vector<int> g[N];
 
 bool find(int u) {
     for (auto &v: g[u])
@@ -16,9 +16,9 @@ bool find(int u) {
 
 int hungry() {
     int res = 0;
-    for (int i = 1; i <= N; i++) match[i] = 0;
-    for (int i = 1; i <= N; i++) {
-        for (int j = 1; j <= N; j++) used[j] = 0;
+    for (int i = 1; i <= n; i++) match[i] = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) used[j] = 0;
         if (find(i)) res++;
     }
     return res;

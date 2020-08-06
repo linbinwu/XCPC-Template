@@ -5,7 +5,7 @@
 //把两个树通过一条边相连得到一个新的树，那么新的树的重心在连接原来两个树的重心的路径上
 //把一个树添加或删除一个叶子，那么它的重心最多只移动一条边的距离
 
-int maxp[MAX], siz[MAX], rt;
+int maxp[N], siz[N], rt;
 
 void getRt(int u, int fa, int all) {//树的重心
     siz[u] = 1, maxp[u] = 0;
@@ -19,4 +19,9 @@ void getRt(int u, int fa, int all) {//树的重心
     if (maxp[u] < maxp[rt]) rt = u;
 }
 
-maxp[rt = 0] = N; getRt(1, 0, N);
+int main() {
+
+    maxp[rt = 0] = n; getRt(1, 0, n);
+
+    return 0;
+}

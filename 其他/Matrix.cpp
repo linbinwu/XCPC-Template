@@ -1,6 +1,6 @@
 struct Matrix {
-    static const int MAX_N = 10, INF = 0x3f3f3f3f;
-    int n, a[MAX_N][MAX_N];
+    static const int N = 10, INF = 0x3f3f3f3f;
+    int n, a[N][N];
     Matrix(int siz, int type) {
         n = siz;
         for (int i = 0; i < n; i++)

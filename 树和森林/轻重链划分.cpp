@@ -1,5 +1,5 @@
-int siz[MAX], son[MAX], dep[MAX], fa[MAX], top[MAX];
-int id[MAX], nodeOf[MAX], cnt;//划分点
+int siz[N], son[N], dep[N], fa[N], top[N];
+int id[N], nodeOf[N], cnt;//划分点
 void dfs(int u, int par) {
     dep[u] = dep[fa[u] = par] + (siz[u] = 1);
     for (auto &v: g[u])

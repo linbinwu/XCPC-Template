@@ -1,5 +1,5 @@
-int siz[MAX], son[MAX], dep[MAX], fa[MAX], top[MAX];
-int nodeOf[MAX], id[MAX], cnt;
+int siz[N], son[N], dep[N], fa[N], top[N];
+int nodeOf[N], id[N], cnt;
 void dfs(int u, int par) {
     dep[u] = dep[fa[u] = par] + (siz[u] = 1);
     for (int i = head[u], v; i; i = e[i].nxt)

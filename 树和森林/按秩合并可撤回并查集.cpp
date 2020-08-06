@@ -4,7 +4,7 @@ struct node {
 
 struct UnionFind {
 private:
-    int rk[MAX], pre[MAX], siz[MAX], totNode;//MAX为最大点数
+    int rk[N], pre[N], siz[N], totNode;//N为最大点数
     stack<node> st;//node记录上次修改的内容
 public:
     void init(int tot) {

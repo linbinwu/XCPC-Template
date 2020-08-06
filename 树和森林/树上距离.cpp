@@ -1,6 +1,6 @@
 struct Distance {//树剖版本lca
-    ll dis[MAX];
-    int son[MAX], siz[MAX], top[MAX], fa[MAX], dep[MAX];
+    ll dis[N];
+    int son[N], siz[N], top[N], fa[N], dep[N];
     void dfs(int u, int par, ll d) {
         dep[u] = dep[fa[u] = par] + (siz[u] = 1), dis[u] = d;
         int max_son = -1;

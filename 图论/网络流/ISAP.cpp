@@ -1,7 +1,5 @@
 struct ISAP {
-    const static int MAX_N = ...;//node size
-    const static int INF = 0x3f3f3f3f;
-
+    const static int N = ...;//node size
     struct Edge {
         int from, to, cap, flow;
         bool operator < (const Edge &rhs) const {
@@ -10,9 +8,9 @@ struct ISAP {
     };
     int n, m, s, t;
     vector<Edge> edges;
-    vector<int> g[MAX_N];
-    bool vis[MAX_N];
-    int dep[MAX_N], cur[MAX_N], p[MAX_N], num[MAX_N];
+    vector<int> g[N];
+    bool vis[N];
+    int dep[N], cur[N], p[N], num[N];
 
     void addEdge(int from, int to, int cap) {
         edges.push_back(Edge{from, to, cap, 0});

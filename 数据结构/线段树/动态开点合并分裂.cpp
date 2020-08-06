@@ -1,7 +1,7 @@
 
 #define mid (l+r)/2
-static const int MAX_N = MAX * 40;
-int rt[MAX], now;
+static const int MAX_N = N * 40;
+int rt[N], now;
 int lc[MAX_N], rc[MAX_N];
 ll sum[MAX_N];
 int tot, rub[MAX_N];

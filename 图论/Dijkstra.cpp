@@ -9,7 +9,7 @@ struct node {
 priority_queue<node> q;
 
 void dijkstra(int s) {
-    for (int i = 1; i <= N; i++) dis[i] = INF, vis[i] = 0;
+    for (int i = 1; i <= n; i++) dis[i] = INF, vis[i] = 0;
     dis[s] = 0;
     q.push(node{s, dis[s]});
     while (!q.empty()) {
@@ -17,8 +17,8 @@ void dijkstra(int s) {
         int u = p.now;
         if (vis[u]) continue;
         vis[u] = 1;
-        for (int i = head[u], v = e[i].to; i; i = e[i].nxt, v = e[i].to)
-            if (dis[u] + e[i].w < dis[v]) {
+        for (int i = head[u], v; i; i = e[i].nxt)
+            if (dis[u] + e[i].w < dis[v = e[i].to]) {
                 dis[v] = dis[u] + e[i].w;
                 if (!vis[v]) q.push(node{v, dis[v]});
             }

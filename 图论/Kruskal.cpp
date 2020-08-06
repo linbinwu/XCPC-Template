@@ -1,13 +1,13 @@
 //MlogM
 
-int pre[MAX], tot;
+int pre[N], tot;
 
 struct edge {
     int u, v, w;
     bool operator < (const edge &rhs) const {
         return w < rhs.w;
     }
-} e[MAX * MAX];
+} e[M * M];
 
 int find(int x) { while (x ^ pre[x]) x = pre[x]; return x; }
 
@@ -19,7 +19,7 @@ int kruskal() {//before invoking kruskal, sort array e
         ans += e[i].w;
         pre[v] = u;
         cnt++;
-        if (cnt == N - 1) break;
+        if (cnt == n - 1) break;
     }
     return ans;
 }

@@ -6,8 +6,8 @@
 
 bool spfa(int u) {//dfs跑差分约束最短路
     vis[u] = 1;
-    for (int i = head[u], v = e[i].to; i; i = e[i].nxt, v = e[i].to)
-        if (dis[u] + e[i].w < dis[v]) {
+    for (int i = head[u], v; i; i = e[i].nxt)
+        if (dis[u] + e[i].w < dis[v = e[i].to]) {
             if (vis[v]) return false;
             else {
                 dis[v] = dis[u] + e[i].w;

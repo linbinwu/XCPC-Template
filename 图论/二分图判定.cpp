@@ -1,6 +1,6 @@
 //不存在奇环即为二分图
-int N, M;
-int pre[MAX << 1], rk[MAX << 1];
+int n, m;
+int pre[N << 1], rk[N << 1];
 
 int find(int x) { while (x ^ pre[x]) x = pre[x]; return x; }
 
@@ -17,8 +17,8 @@ int main() {
     int u, v; scanf("%d%d", &u, &v);
     if (find(u) == find(v)) cnt++;//flag = 0
     else {
-        merge(u + N, v);
-        merge(v + N, u);
+        merge(u + n, v);
+        merge(v + n, u);
     }
 
 	

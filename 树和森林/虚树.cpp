@@ -3,15 +3,15 @@
 //如果对虚树做dp, 总体复杂度和∑K有关
 //考虑dp的时候, 需要同时考虑非关键点对答案的影响
 
-int N;
+int n;
 
 struct edge {
     int nxt, to;
-} e[MAX << 1];
-int head[MAX], tot;
+} e[N << 1];
+int head[N], tot;
 void add(int u, int v) { e[++tot] = edge{ head[u], v }, head[u] = tot;}
 
-int dep[MAX], fa[MAX], topfa[MAX], siz[MAX], son[MAX], dfn[MAX], cnt;
+int dep[N], fa[N], topfa[N], siz[N], son[N], dfn[N], cnt;
 void dfs(int u, int par) {
     dep[u] = dep[fa[u] = par] + (siz[u] = 1);
     int max_son = -1;
@@ -39,10 +39,10 @@ int LCA(int x, int y) {
 int getDis(int x, int y) { return dep[x] + dep[y] - 2 * dep[LCA(x, y)]; }
 
 //建立虚树
-int tag[MAX];//tag[u] = 1 <=> 关键点
-vector<int> g[MAX];//虚树边
+int tag[N];//tag[u] = 1 <=> 关键点
+vector<int> g[N];//虚树边
 void add_edge(int u, int v) { g[u].push_back(v); }
-int st[MAX], top, rt;//rt为虚树根
+int st[N], top, rt;//rt为虚树根
 void insert(int u) {
     if (top == 1) {
         st[++top] = u;
@@ -82,8 +82,8 @@ void solve() {
 }
 
 int main() {
-    scanf("%d", &N);
-    for (int i = 1; i < N; i++) {
+    scanf("%d", &n);
+    for (int i = 1; i < n; i++) {
         int u, v; scanf("%d%d", &u, &v);
         add(u, v); add(v, u);
     }

@@ -1,8 +1,8 @@
-int N, M;
-vector<int> g[MAX];
-int dfn[MAX], low[MAX], vis[MAX], cnt;//cnt记录dfs点时间
-int color[MAX], siz[MAX], col;//co某点属于哪个强连通分量, siz某强连通分量大小, col强连通分量个数
-int st[MAX], top;
+int n, m;
+vector<int> g[N];
+int dfn[N], low[N], vis[N], cnt;//cnt记录dfs点时间
+int color[N], siz[N], col;//co某点属于哪个强连通分量, siz某强连通分量大小, col强连通分量个数
+int st[N], top;
 
 void tarjan(int u) {//强连通
     dfn[u] = low[u] = ++cnt;
@@ -25,11 +25,11 @@ void tarjan(int u) {//强连通
             vis[st[top--]] = 0;
         }
         --top;
-//        非缩点
-//        ++col;
-//        vis[u] = 0;
-//        while (st[top] != u) vis[st[top--]] = 0;
-//        --top;
+        /*非缩点
+        ++col;
+        vis[u] = 0;
+        while (st[top] != u) vis[st[top--]] = 0;
+        --top;*/
     }
 }
 
@@ -38,8 +38,8 @@ void init() {
 }
 
 
-int dfn[MAX], low[MAX], cnt, tot;
-bool cut[MAX];
+int dfn[N], low[N], cnt, tot;
+bool cut[N];
 
 void tarjan(int u, int topf) {//无向图割点
     dfn[u] = low[u] = ++cnt;

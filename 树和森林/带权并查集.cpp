@@ -1,4 +1,4 @@
-int pre[MAX], num[MAX], dis[MAX];//num[i]表示以i为队头时队内元素数量, dis[i]表示到达i的祖先节点的距离
+int pre[N], num[N], dis[N];//num[i]表示以i为队头时队内元素数量, dis[i]表示到达i的祖先节点的距离
 
 void merge(int x, int y) {
     dis[x] = num[y];

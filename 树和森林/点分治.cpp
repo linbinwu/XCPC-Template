@@ -3,12 +3,12 @@
 //经过的树根若是不同一定能在当前树的子树中解决
 //如距离为K/小于K的路径有多少....
 
-int maxp[MAX], siz[MAX], vis[MAX], rt;
+int maxp[N], siz[N], vis[N], rt;
 
 void getRt(int u, int fa, int all) {//求树的重心
     siz[u] = 1, maxp[u] = 0;
-    for (int i = head[u], v = e[i].to; i; i = e[i].nxt, v = e[i].to)
-        if (v != fa && !vis[v]) {
+    for (int i = head[u], v; i; i = e[i].nxt)
+        if ((v = e[i].to) != fa && !vis[v]) {
             getRt(v, u, all);
             siz[u] += siz[v];
             maxp[u] = max(maxp[u], siz[v]);
@@ -30,8 +30,8 @@ void calc(int u) {//具体题目具体分析
 void dfs(int u) {
     vis[u] = 1;
     calc(u);
-    for (int i = head[u], v = e[i].to; i; i = e[i].nxt, v = e[i].to)
-        if (!vis[v]) {
+    for (int i = head[u], v; i; i = e[i].nxt)
+        if (!vis[v = e[i].to]) {
             maxp[rt = 0] = N; getRt(v, 0, siz[v]);
             dfs(rt);
         }
