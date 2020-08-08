@@ -10,3 +10,15 @@ ll mu(ll x) {
     if (x > 1) cnt++;
     return (cnt & 1) ? -1 : 1;//偶数1, 奇数-1
 }
+
+ll phi(ll x) {
+    ll res = 1;
+    for (ll i = 2; i * i <= x; i++)
+        if (x % i == 0) {
+            x = x / i;
+            res *= i - 1;
+            while (x % i == 0) x = x / i, res *= i;
+        }
+    if (x > 1) res *= x - 1;
+    return res;
+}
