@@ -45,7 +45,7 @@ pii dfs(int u, int fa) {//查找树的直径
     return mx;
 }
 
-pii getStartEnd(int start) {//从任意出发点开始, 查找树的直径的两个端点, 长度为dis[second]
+pii getD(int start) {//从任意出发点开始, 查找树的直径的两个端点, 长度为dis[second]
     dis[start] = 0;
     start = dfs(start, 0).second;
     dis[start] = 0;

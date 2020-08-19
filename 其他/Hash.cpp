@@ -1,5 +1,5 @@
 struct Hash {
-    int b[MAX], tot;
+    int b[N], tot;
     void init() { tot = 0; }
     void insert(int x) { b[++tot] = x; }
     void build() {

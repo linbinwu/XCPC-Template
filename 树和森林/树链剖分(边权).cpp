@@ -77,7 +77,7 @@ void push_down(int u) {
         t[u].tag = 0;
     }
 }
-void modify1(int u, int p, int k) {//单点修改值
+void modify(int u, int p, int k) {//单点修改值
     if (t[u].l == t[u].r) {
         t[u].v = node{ k, k, k };
         return;

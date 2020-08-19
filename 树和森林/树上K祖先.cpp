@@ -27,7 +27,7 @@ void dfs(int u, int par) {
     dep[u] = dep[fa[u] = par] + (siz[u] = 1);
     for (auto &v: g[u])
         if (v != par) {
-            dfs(v, u, d + 1);
+            dfs(v, u);
             siz[u] += siz[v];
             if (!son[u] || siz[v] > siz[son[u]])
                 son[u] = v;

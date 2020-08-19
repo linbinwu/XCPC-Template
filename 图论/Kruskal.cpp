@@ -9,7 +9,7 @@ struct edge {
     }
 } e[M * M];
 
-int find(int x) { while (x ^ pre[x]) x = pre[x]; return x; }
+int find(int x) { return x == pre[x] ? x : pre[x] = find(pre[x]); }
 
 int kruskal() {//before invoking kruskal, sort array e
     int cnt = 0, ans = 0;
