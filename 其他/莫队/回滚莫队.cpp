@@ -3,7 +3,7 @@
 //区间缩短的时候不太好维护信息（如最大值，删除以后不知道次大值是多少)
 
 struct Hash {
-    int b[MAX], tot;
+    int b[N], tot;
     void init() { tot = 0; }
     void insert(int x) { b[++tot] = x; }
     void build() {
@@ -13,17 +13,17 @@ struct Hash {
     int pos(int x) { return lower_bound(b + 1, b + 1 + tot, x) - b; }
 } ha;
 
-int N, M;
-int c[MAX], pos[MAX], cnt[MAX], cntt[MAX];
-int belong[MAX], sizz;
-ll ans[MAX], res;
+int n, m;
+int c[N], pos[N], cnt[N], cntt[N];
+int belong[N], sizz;
+ll ans[N], res;
 
 struct Query {
     int l, r, id;
     bool operator < (const Query &rhs) const {
         return belong[l] ^ belong[rhs.l] ? belong[l] < belong[rhs.l] : r < rhs.r;
     }
-} q[MAX];
+} q[N];
 
 ll bruteForce(int ql, int qr) {
     ll result = 0;
@@ -49,24 +49,24 @@ int main() {
     freopen("input.in", "r", stdin);
     freopen("output.out", "w", stdout);
 #endif
-    scanf("%d%d", &N, &M);
-    for (int i = 1; i <= N; i++) scanf("%d", &c[i]), ha.insert(c[i]);
+    scanf("%d%d", &n, &m);
+    for (int i = 1; i <= n; i++) scanf("%d", &c[i]), ha.insert(c[i]);
     ha.build();
-    for (int i = 1; i <= N; i++) pos[i] = ha.pos(c[i]);
+    for (int i = 1; i <= n; i++) pos[i] = ha.pos(c[i]);
 
-    sizz = sqrt(N); int num = ceil((long double)N / sizz);
+    sizz = sqrt(n); int num = ceil((long double)n / sizz);
     for (int i = 1, j = 1; i <= num; i++)
-        while (j <= i * sizz && j <= N)
+        while (j <= i * sizz && j <= n)
             belong[j++] = i;
 
-    for (int i = 1; i <= M; i++) scanf("%d%d", &q[i].l, &q[i].r), q[i].id = i;
-    sort(q + 1, q + 1 + M);
+    for (int i = 1; i <= m; i++) scanf("%d%d", &q[i].l, &q[i].r), q[i].id = i;
+    sort(q + 1, q + 1 + m);
 
     for (int i = 1, j = 1; i <= num; i++) {
         memset(cnt, 0, sizeof(cnt));
-        int right = min(i * sizz, N);
+        int right = min(i * sizz, n);
         res = 0;
-        for (int l = right + 1, r = right; j <= M && belong[q[j].l] == i; j++, l = right + 1) {
+        for (int l = right + 1, r = right; j <= m && belong[q[j].l] == i; j++, l = right + 1) {
             int ql = q[j].l, qr = q[j].r;
             if (qr - ql + 1 <= sizz) {
                 ans[q[j].id] = bruteForce(ql, qr);
@@ -81,7 +81,7 @@ int main() {
         }
     }
 
-    for (int i = 1; i <= M; i++) printf("%lld\n", ans[i]);
+    for (int i = 1; i <= m; i++) printf("%lld\n", ans[i]);
 
     return 0;
 }

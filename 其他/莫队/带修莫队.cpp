@@ -1,10 +1,11 @@
+
 //带修莫队模板题
 //查询[ql, qr]间不同颜色数量，带修改
 
-int N, M;
-int c[MAX], cnt[MAX];
-int belong[MAX], size, totq, totm;
-int ans[MAX], res;
+int n, m;
+int c[N], cnt[N];
+int belong[N], size, totq, totm;
+int ans[N], res;
 
 struct Query {
     int l, r, t, id;
@@ -12,11 +13,11 @@ struct Query {
         return belong[l] ^ belong[rhs.l] ? belong[l] < belong[rhs.l] :
                (belong[r] ^ belong[rhs.r] ? belong[r] < belong[rhs.r] : t < rhs.t);
     }
-} q[MAX];
+} q[N];
 
 struct Modify {
     int pos, val;
-} m[MAX];
+} modify[N];
 
 void add(int x) {
     if (!cnt[c[x]]) res++;
@@ -29,12 +30,12 @@ void del(int x) {
 }
 
 void upd(int x, int ql, int qr) {
-    int pos = m[x].pos;
+    int pos = modify[x].pos;
     if (ql <= pos && pos <= qr) {
         cnt[c[pos]]--; if (!cnt[c[pos]]) res--;
-        if (!cnt[m[x].val]) res++; cnt[m[x].val]++;
+        if (!cnt[modify[x].val]) res++; cnt[modify[x].val]++;
     }
-    swap(m[x].val, c[pos]);//这次改掉，下次会改回去
+    swap(modify[x].val, c[pos]);//这次改掉，下次会改回去
 }
 
 int main() {
@@ -42,9 +43,9 @@ int main() {
     freopen("input.in", "r", stdin);
     freopen("output.out", "w", stdout);
 #endif
-    scanf("%d%d", &N, &M);
-    for (int i = 1; i <= N; i++) scanf("%d", &c[i]);
-    for (int i = 1; i <= M; i++) {
+    scanf("%d%d", &n, &m);
+    for (int i = 1; i <= n; i++) scanf("%d", &c[i]);
+    for (int i = 1; i <= m; i++) {
         char op[10]; scanf("%s", op);
         if (op[0] == 'Q') {
             int ql, qr; scanf("%d%d", &ql, &qr); totq++;
@@ -52,14 +53,14 @@ int main() {
         }
         else {
             int pos, val; scanf("%d%d", &pos, &val); totm++;
-            m[totm] = Modify{pos, val};
+            modify[totm] = Modify{pos, val};
         }
     }
 
     //size = N ^ (2 / 3), (N * totm) ^ (1 / 3)
-    size = ceil(pow(N, (long double)2.0 / 3)); int num = ceil((long double)N / size);
+    size = ceil(pow(n, (long double)2.0 / 3)); int num = ceil((long double)n / size);
     for (int i = 1, j = 1; i <= num; i++)
-        while (j <= i * size && j <= N)
+        while (j <= i * size && j <= n)
             belong[j++] = i;
 
     sort(q + 1, q + 1 + totq);

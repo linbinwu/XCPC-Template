@@ -28,6 +28,7 @@ int main() {
         K[u][u]++, K[v][v]++, K[u][v]--, K[v][u]--;
     }
 
+    ll ans = gauss(n, K);
 
     return 0;
 }
