@@ -1,4 +1,4 @@
-int vis[MAX], prime[MAX], num, mu[MAX];
+int vis[N], prime[N], num, mu[N];
 void makeMobius(int siz) {
     mu[1] = 1, num = 0;
     for (int i = 2; i <= siz; i++) {

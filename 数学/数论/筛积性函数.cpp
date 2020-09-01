@@ -1,8 +1,8 @@
 //只需要计算f(p ^ k)即可
 //其余的都可以通过积性函数的性质来计算
 
-int vis[MAX], prime[MAX], num;
-int f[MAX], low[MAX];
+int vis[N], prime[N], num;
+int f[N], low[N];
 
 void makeF(int siz) {//f为积性函数
     num = 0, low[1] = f[1] = 1;

@@ -1,5 +1,4 @@
-int vis[MAX], prime[MAX], num, phi[MAX];
-
+int vis[N], prime[N], num, phi[N];
 void makePhi(int siz) {
     phi[1] = 1;
     for (int i = 2; i <= siz; i++) {
