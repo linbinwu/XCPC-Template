@@ -21,10 +21,10 @@ ll exgcd(ll a, ll b, ll &x, ll &y) {
     return res;
 }
 
-ll excrt(ll r[], ll m[], int N) {
+ll excrt(ll r[], ll m[], int n) {
     //模数m[i]不互质时用excrt
     ll M = m[1], res = r[1];
-    for (int i = 2; i <= N; i++) {
+    for (int i = 2; i <= n; i++) {
         ll a = M, b = m[i], c = (r[i] - res % m[i] + m[i]) % m[i], x = 0, y = 0;
         ll g = exgcd(a, b, x, y);
         if (c % g != 0) return -1;//c不能整除g那就无正整数解

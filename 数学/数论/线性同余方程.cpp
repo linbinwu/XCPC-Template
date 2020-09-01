@@ -12,7 +12,7 @@ int exgcd(int a, int b, int &x, int &y) {
 }
 
 bool solve(int a, int b, int c, int &x, int &y) {
-    //求 ax + by = c 的解(x, y)
+    //求 ax + by = c 的解(x, y), 有解的条件为c | (gcd(a, b))!!!!!!
     //等价于求 ax = b (mod c) 的整数解x
     int d = exgcd(a, b, x, y);
     if (c % d != 0) return false;

@@ -1,4 +1,5 @@
-ll mul(ll a, ll b, ll mod) {//龟速乘保证乘法超过ll, 但是mod不会超过ll
+//在a * a > ll, a * a % mod < ll下使用
+ll mul(ll a, ll b, ll mod) {
     ll res = 0;
     while (b) {
         if (b & 1)

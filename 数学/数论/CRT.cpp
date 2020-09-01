@@ -22,10 +22,10 @@ ll inv(ll a, ll b) {
 //利用逆元性质, 即ri * Mi * invMi = ri (mod mi)
 //res = (sigma(ri * Mi * invMi)) % M
 
-ll china(ll r[], ll m[], int N) {
+ll china(ll r[], ll m[], int n) {
     ll M = 1, res = 0;
-    for (int i = 1; i <= N; i++) M *= m[i];
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i <= n; i++) M *= m[i];
+    for (int i = 1; i <= n; i++) {
         ll Mi = M / m[i], invMi = inv(Mi, m[i]);
         res = (res + r[i] * Mi % M * invMi % M) % M;
         //res = (res + mul(mul(r[i], Mi, M), invMi, M)) % M;按位乘
