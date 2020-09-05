@@ -34,6 +34,6 @@ inline void XOR(int *f, int x = 1) {
 
 int main() {
 
-    FWT(a, 1); FWT(b, 1); get(); FWT(a, (OR + AND: 1, XOR: inv2));
+    FWT(a, 1); FWT(b, 1); get(); FWT(a, (OR + AND: -1, XOR: inv2));
 
 }

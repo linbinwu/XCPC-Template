@@ -45,10 +45,8 @@ void del(int x) {
 }
 
 int main() {
-#ifdef ACM_LOCAL
-    freopen("input.in", "r", stdin);
-    freopen("output.out", "w", stdout);
-#endif
+
+
     scanf("%d%d", &n, &m);
     for (int i = 1; i <= n; i++) scanf("%d", &c[i]), ha.insert(c[i]);
     ha.build();
