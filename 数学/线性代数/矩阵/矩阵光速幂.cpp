@@ -17,7 +17,7 @@ struct Matrix {
     }
 };
 
-Matrix power(Matrix A, int k) {//普通的快速幂
+Matrix power(Matrix A, ll k) {//普通的快速幂
     Matrix res = Matrix(A.n);
     for (int i = 0; i < res.n; i++) res.a[i][i] = 1;
     while (k) {

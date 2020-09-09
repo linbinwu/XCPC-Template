@@ -7,19 +7,28 @@ ll C(ll n, ll m) {
 }
 
 
-//预处理后O(N)得到
-ll fac[MAX], inv[MAX];
+ll qpow(ll a, ll b) {
+    ll res = 1;
+    while (b) {
+        if (b & 1) res = res * a % mod;
+        a = a * a % mod;
+        b >>= 1;
+    }
+    return res;
+}
+
+ll fac[N], ifac[N];
 void init(int siz) {
     fac[0] = 1;
     for (int i = 1; i <= siz; i++)
         fac[i] = i * fac[i - 1] % mod;
-    inv[siz] = qpow(fac[siz], mod - 2);
-    for (int i = siz; i >= 1; i--) inv[i - 1] = inv[i] * i % mod;
+    ifac[siz] = qpow(fac[siz], mod - 2);
+    for (int i = siz; i >= 1; i--) ifac[i - 1] = ifac[i] * i % mod;
 }
 
 ll C(ll n, ll m) {
     if (m == 0 || n == m) return 1;
     if (m > n) return 0;
     if (m == 1) return n;
-    return fac[n] * inv[m] % mod * inv[n - m] % mod;
+    return fac[n] * ifac[m] % mod * ifac[n - m] % mod;
 }
