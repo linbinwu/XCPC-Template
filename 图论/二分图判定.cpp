@@ -14,6 +14,8 @@ void merge(int x, int y) {
 
 int main() {
 
+    for (int i = 1; i <= n << 1; i++) pre[i] = i, rk[i] = 0;
+
     int u, v; scanf("%d%d", &u, &v);
     if (find(u) == find(v)) cnt++;//flag = 0
     else {
