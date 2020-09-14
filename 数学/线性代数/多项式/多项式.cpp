@@ -1,5 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
+
 typedef long long ll;
 const int N = 1e6 + 10;
 
@@ -101,6 +100,15 @@ void getPow(ll *f, ll *g, int n, ll k) {
     for (int i = 0, len = getLen(n); i < len; i++) a[i] = 0;
 }
 
+void fenzhiFFT(ll *f, ll *g, int n) {
+    //¼ÆËãg[i] = \sum_{j = 1}^{i} g[i - j] * f[j]
+    static ll a[N];
+    for (int i = 1; i < n; i++) a[i] = (mod - f[i]) % mod;
+    a[0] = 1;
+    ll g0 = g[0];
+    getInv(a, g, n);
+    for (int i = 0; i < n; i++) g[i] = g[i] * g0 % mod, a[i] = 0;
+}
 
 struct Complex { ll x, y; }; ll w;
 Complex mul(Complex a, Complex b, ll mod) {
@@ -154,20 +162,3 @@ void getSqrt(ll *f, ll *g, int n) {
     for (int i = 0; i < len; i++) a[i] = b[i] = 0;
 }
 
-ll f[N], g[N];
-
-int main() {
-#ifdef ACM_LOCAL
-    freopen("input.in", "r", stdin);
-    freopen("output.out", "w", stdout);
-#endif
-    int n;
-    scanf("%d", &n);
-    for (int i = 0; i < n; i++) scanf("%lld", &f[i]);
-
-    getSqrt(f, g, n);
-    for (int i = 0; i < n; i++)
-        printf("%lld ", g[i]);
-
-    return 0;
-}
