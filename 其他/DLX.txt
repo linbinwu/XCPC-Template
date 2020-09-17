@@ -1,8 +1,8 @@
 struct DLX{
     int n,m,SIZE;
-    int U[maxnode],D[maxnode],R[maxnode],L[maxnode],Row[maxnode],Col[maxnode];//L,R,D,UËÄ¸öÊı×é¼ÇÂ¼Ä³½ÚµãÉÏÏÂ×óÓÒÁÚ¾Ó
-    int H[MaxN], S[MaxM];//H¼ÇÂ¼ÅÅÍ·£¬S¼ÇÂ¼Ä³ÁĞÓĞ¶àÉÙ¸ö½Úµã
-    int ansd, ans[MaxN]; 
+    int U[maxnode],D[maxnode],R[maxnode],L[maxnode],Row[maxnode],Col[maxnode];//L,R,D,Uå››ä¸ªæ•°ç»„è®°å½•æŸèŠ‚ç‚¹ä¸Šä¸‹å·¦å³é‚»å±…
+    int H[MaxN], S[MaxM];//Hè®°å½•æ’å¤´ï¼ŒSè®°å½•æŸåˆ—æœ‰å¤šå°‘ä¸ªèŠ‚ç‚¹
+    int ansd, ans[MaxN];
     void init(int _n,int _m)
     {
         n = _n;
@@ -56,7 +56,7 @@ struct DLX{
         L[R[i]] = R[L[i]] = i;
     }
 
-    int f() { //¹À¼Ûº¯Êı¡£
+    int f() { //ä¼°ä»·å‡½æ•°ã€‚
     bool vv[MaxM];
     int ret = 0, c, i, j;
     for(c = R[0]; c != 0; c = R[c]) vv[c] = 1;
@@ -71,7 +71,7 @@ struct DLX{
     }
 
     void repeat_dance(int d) {
-    if(d + f() >= ansd) return; //¹À¼Ûº¯Êı¼ôÖ¦£¬A*ËÑË÷
+    if(d + f() >= ansd) return; //ä¼°ä»·å‡½æ•°å‰ªæï¼ŒA*æœç´¢
     if(R[0] == 0) {
         if(d < ansd) ansd = d;
         return;
@@ -94,7 +94,7 @@ struct DLX{
                 ++S[Col[U[D[j]]=D[U[j]]=j]];
         L[R[c]] = R[L[c]] = c;
     }
-    //dÎªµİ¹éÉî¶È
+    //dä¸ºé€’å½’æ·±åº¦
     bool exact_Dance(int d)
     {
         if(R[0] == 0)

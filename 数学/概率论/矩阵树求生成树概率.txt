@@ -1,4 +1,4 @@
-//P3317 [SDOI2014]÷ÿΩ®
+//P3317 [SDOI2014]ÈáçÂª∫
 const int MAX = 50 + 10;
 int N;
 double a[MAX][MAX];
