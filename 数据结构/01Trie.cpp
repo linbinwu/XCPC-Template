@@ -1,5 +1,5 @@
 struct Trie {
-    static const int MAX_N = MAX * 35, rt = 0;
+    static const int MAX_N = N * 35, rt = 0;
     static const int MAX_BIT = 31;
     int ch[MAX_N][2], sum[MAX_N], tot;
     void insert(ll val) {
@@ -11,7 +11,7 @@ struct Trie {
         }
         sum[u]++;
     }
-    ll queryKth(ll val, int k = 1) {//µÚk´ó
+    ll queryKth(ll val, int k = 1) {//ç¬¬kå¤§
         int u = rt; ll res = 0;
         for (int bit = MAX_BIT; bit >= 0; bit--) {
             int s = (val >> bit) & 1;

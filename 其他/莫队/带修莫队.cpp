@@ -1,6 +1,6 @@
 
-//´øĞŞÄª¶ÓÄ£°åÌâ
-//²éÑ¯[ql, qr]¼ä²»Í¬ÑÕÉ«ÊıÁ¿£¬´øĞŞ¸Ä
+//å¸¦ä¿®è«é˜Ÿæ¨¡æ¿é¢˜
+//æŸ¥è¯¢[ql, qr]é—´ä¸åŒé¢œè‰²æ•°é‡ï¼Œå¸¦ä¿®æ”¹
 
 int n, m;
 int c[N], cnt[N];
@@ -35,7 +35,7 @@ void upd(int x, int ql, int qr) {
         cnt[c[pos]]--; if (!cnt[c[pos]]) res--;
         if (!cnt[modify[x].val]) res++; cnt[modify[x].val]++;
     }
-    swap(modify[x].val, c[pos]);//Õâ´Î¸Äµô£¬ÏÂ´Î»á¸Ä»ØÈ¥
+    swap(modify[x].val, c[pos]);//ï¿½ï¿½Î¸Äµï¿½ï¿½ï¿½ï¿½Â´Î»ï¿½Ä»ï¿½È¥
 }
 
 int main() {

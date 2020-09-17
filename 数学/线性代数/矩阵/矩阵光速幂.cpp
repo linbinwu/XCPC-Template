@@ -7,7 +7,7 @@ struct Matrix {
             for (int j = 0; j < n; j++)
                 a[i][j] = 0;
     }
-    Matrix operator * (const Matrix& A) const {//重载矩阵乘法
+    Matrix operator * (const Matrix& A) const {//閲嶈浇鐭╅樀涔樻硶
         Matrix res = Matrix(n);
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
@@ -17,7 +17,7 @@ struct Matrix {
     }
 };
 
-Matrix power(Matrix A, ll k) {//普通的快速幂
+Matrix power(Matrix A, ll k) {//鏅�氱殑蹇�熷箓
     Matrix res = Matrix(A.n);
     for (int i = 0; i < res.n; i++) res.a[i][i] = 1;
     while (k) {
@@ -28,7 +28,7 @@ Matrix power(Matrix A, ll k) {//普通的快速幂
     return res;
 }
 
-Matrix power(Matrix A, string s) {//优化的快速幂
+Matrix power(Matrix A, string s) {//浼樺寲鐨勫揩閫熷箓
     Matrix res = Matrix(A.n);
     for (int i = 0; i < res.n; i++) res.a[i][i] = 1;
     for (int i = s.length() - 1; i >= 0; --i) {

@@ -1,13 +1,13 @@
-//��״��������ϯ������̬ά�������kС
-//��ǰ��p������[p, N]����ϯ������ͨ��ϯ������rt[p - 1]�Ļ����ϵõ�)
-//��ѯ[1, p]�����ɵõ�rt[p]ʱ��״̬
+//树状数组套主席树，动态维护区间第k小
+//当前点p作用于[p, N]的主席树（普通主席树是在rt[p - 1]的基础上得到)
+//查询[1, p]，即可得到rt[p]时的状态
 int N, M;
 int a[MAX], b[MAX << 1], n;
 
 struct node {
     int x, y, z;
 } q[MAX];
---------------��̬��ϯ��--------------------------------------
+--------------动态主席树--------------------------------------
 int rt[MAX], ru[MAX], rv[MAX], tot;
 int lc[MAX_N], rc[MAX_N], sum[MAX_N];
 
@@ -27,7 +27,7 @@ void change(int p, int v) {
 }
 
 int query(int ql, int qr, int k) {
-    ql--;//ǰ׺�������[ql, qr]��״̬Ϊpre[qr] - pre[ql - 1]
+    ql--;//前缀和相减，[ql, qr]的状态为pre[qr] - pre[ql - 1]
     int cnt1 = 0, cnt2 = 0;
     for (int i = qr; i; i -= lowbit(i)) ru[++cnt1] = rt[i];
     for (int i = ql; i; i -= lowbit(i)) rv[++cnt2] = rt[i];

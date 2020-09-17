@@ -1,5 +1,5 @@
-int last[MAX];//ÉÏÒ»ÖÖi³öÏÖÎ»ÖÃ
-int rt[MAX], tot;
+int last[N];//ä¸Šä¸€ç§iå‡ºç°ä½ç½®
+int rt[N], tot;
 int lc[MAX_N], rc[MAX_N], sum[MAX_N];
 
 void update(int &now, int pre, int l, int r, int p, int v) {
@@ -20,16 +20,16 @@ int query(int now, int l, int r, int ql, int qr) {
 }
 
 int main() {
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i <= n; i++) {
         int x; scanf("%d", &x);
-        update(rt[i], rt[i - 1], 1, N, i, 1);
-        if (last[x]) update(rt[i], rt[i], 1, N, last[x], -1);//ÉÏÒ»ÖÖ³öÏÖ¾ÍÉ¾³ıµô
+        update(rt[i], rt[i - 1], 1, n, i, 1);
+        if (last[x]) update(rt[i], rt[i], 1, n, last[x], -1);//ä¸Šä¸€ç§å‡ºç°å°±åˆ é™¤æ‰
         last[x] = i;
     }
-    while (M--) {
+    while (m--) {
         int ql, qr; scanf("%d%d", &ql, &qr);
-        //rt[qr]°üº¬[1, qr]µÄĞÅÏ¢, ÕâÀïÖ»²éÑ¯[ql, qr]²¿·Ö
-        printf("%d\n", query(rt[qr], 1, N, ql, N));
+        //rt[qr]åŒ…å«[1, qr]çš„ä¿¡æ¯, è¿™é‡ŒåªæŸ¥è¯¢[ql, qr]éƒ¨åˆ†
+        printf("%d\n", query(rt[qr], 1, n, ql, n));
     }
     return 0;
 }

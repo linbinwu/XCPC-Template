@@ -1,4 +1,4 @@
-//理论复杂度O(n^2m), 求解二分图匹配问题时, 时间复杂度为O(m sqrt(n))
+//鐞嗚澶嶆潅搴(n^2m), 姹傝В浜屽垎鍥惧尮閰嶉棶棰樻椂, 鏃堕棿澶嶆潅搴︿负O(m sqrt(n))
 struct Dinic {
     static const int N = ...;//size
     struct Edge { int from, to, cap, flow; };

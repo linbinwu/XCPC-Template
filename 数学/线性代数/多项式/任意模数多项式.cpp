@@ -125,7 +125,7 @@ void getPow(ll *f, ll *g, int n, ll k) {
 }
 
 void fenzhiFFT(ll *f, ll *g, int n) {
-    //¼ÆËãg[i] = \sum_{j = 1}^{i} g[i - j] * f[j]
+    //è®¡ç®—g[i] = \sum_{j = 1}^{i} g[i - j] * f[j]
     static ll a[N];
     for (int i = 1; i < n; i++) a[i] = (mod - f[i]) % mod;
     a[0] = 1;
