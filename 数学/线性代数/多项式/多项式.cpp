@@ -100,6 +100,22 @@ void getPow(ll *f, ll *g, int n, ll k) {
     for (int i = 0, len = getLen(n); i < len; i++) a[i] = 0;
 }
 
+void getPower(ll *f, ll *g, int n, ll k1, ll k2) {//k1为原始模数, k2为模phi(mod - 1)
+    int pos = 0; while (pos < n && !f[pos]) pos++;
+    if (k1 * pos >= n) { for (int i = 0; i < n; i++) g[i] = 0; return; }
+    static ll a[N], b[N];
+    int m = n - pos, inv = qpow(f[pos], mod - 2, mod), t = qpow(f[pos], k2, mod);
+    for (int i = 0; i < m; i++) a[i] = f[i + pos] * inv % mod;
+    getLn(a, b, m);
+    for (int i = 0; i < m; i++) b[i] = b[i] * k1 % mod;
+    getExp(b, g, m);
+    for (int i = 0; i < m; i++) g[i] = g[i] * t % mod;
+    pos = min(1ll * pos * k1, 1ll * n);
+    for (int i = n - 1; i >= pos; i--) g[i] = g[i - pos];
+    for (int i = pos - 1; i >= 0; i--) g[i] = 0;
+    for (int i = 0, len = getLen(m); i < len; i++) a[i] = b[i] = 0;
+}
+
 void fenzhiFFT(ll *f, ll *g, int n) {
     //计算g[i] = \sum_{j = 1}^{i} g[i - j] * f[j]
     static ll a[N];
