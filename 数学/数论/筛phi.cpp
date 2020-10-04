@@ -1,6 +1,6 @@
 int vis[N], prime[N], num, phi[N];
 void makePhi(int siz) {
-    phi[1] = 1;
+    phi[1] = 1, num = 0;
     for (int i = 2; i <= siz; i++) {
         if (!vis[i]) prime[++num] = i, phi[i] = i - 1;
         for (int j = 1; j <= num && i * prime[j] <= siz; j++) {
