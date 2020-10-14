@@ -1,6 +1,6 @@
 //MlogM
 
-int pre[N], tot;
+int pre[N], m;
 
 struct edge {
     int u, v, w;
@@ -13,7 +13,7 @@ int find(int x) { return x == pre[x] ? x : pre[x] = find(pre[x]); }
 
 int kruskal() {//before invoking kruskal, sort array e
     int cnt = 0, ans = 0;
-    for (int i = 1; i <= tot; i++) {
+    for (int i = 1; i <= m; i++) {
         int u = find(e[i].u), v = find(e[i].v);
         if (u == v) continue;
         ans += e[i].w;
