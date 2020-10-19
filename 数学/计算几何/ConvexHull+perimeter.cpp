@@ -46,7 +46,6 @@ void Graham(int n)
 
 int main()
 {
-	//freopen("in.txt", "r", stdin);
 	int n;
 	double res;
 	while (scanf("%d", &n) != EOF && n) {

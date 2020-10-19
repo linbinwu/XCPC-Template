@@ -1,6 +1,6 @@
 struct LinerBase {
     static const int MAX_BIT = 60;
-    ll num[65];
+    ll num[65], tmp[65];
     bool flag;//能否表示0
     LinerBase() { flag = 0; memset(num, 0, sizeof(num)); }
     void insert(ll x) {
@@ -23,6 +23,19 @@ struct LinerBase {
         if (flag) return 0;
         for (int bit = 0; bit <= MAX_BIT; bit++)
             if (num[bit]) return num[bit];
+    }
+    ll queryKth(ll k) {
+        ll res = 0, cnt = 0;
+        k -= flag; if (!k) return 0;
+        for (int i = 0; i < MAX_BIT; i++) {
+            for (int j = i - 1; ~j; j--)
+                if (num[i] & (1ll << j)) num[i] ^= num[j];
+            if (num[i]) tmp[cnt++] = num[i];
+        }
+        if (k >= (1ll << cnt)) return -1;
+        for (int i = 0; i < cnt; i++)
+            if (k & (1ll << i)) res ^= tmp[i];
+        return res;
     }
 } linerBase;
 
@@ -57,7 +70,7 @@ struct LinerBase {
                 res = max(res, res ^ num[bit]);
         return res;
     }
-} lb[MAX];
+} lb[N];
 
 LinerBase merge(const LinerBase &a, const LinerBase &b) {
     LinerBase res;
