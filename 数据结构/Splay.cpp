@@ -4,8 +4,8 @@ struct Splay {
 #define rc  ch[u][1]
 #define identify(u) (ch[fa[u]][1] == u)
     int tot, totElement;
-    int val[MAX], cnt[MAX], fa[MAX], sum[MAX];
-    int ch[MAX][2];
+    int val[N], cnt[N], fa[N], sum[N];
+    int ch[N][2];
     Splay() { tot = totElement = 0; }
     void push_up(int u) { sum[u] = sum[lc] + sum[rc] + cnt[u]; }
     void connect(int u, int par, int son) { ch[par][son] = u, fa[u] = par; }

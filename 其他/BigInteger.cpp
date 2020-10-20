@@ -1,10 +1,10 @@
 struct BigInteger {
     typedef unsigned long long LL;
- 
+
     static const int BASE = 100000000;
     static const int WIDTH = 8;
     vector<int> s;
- 
+
     BigInteger& clean() { while (!s.back() && s.size()>1)s.pop_back(); return *this; }
     BigInteger(LL num = 0) { *this = num; }
     BigInteger(string s) { *this = s; }
@@ -27,7 +27,7 @@ struct BigInteger {
         }
         return (*this).clean();
     }
- 
+
     BigInteger operator + (const BigInteger& b) const {
         BigInteger c; c.s.clear();
         for (int i = 0, g = 0; ; i++) {
@@ -41,7 +41,7 @@ struct BigInteger {
         return c;
     }
     BigInteger operator - (const BigInteger& b) const {
-        assert(b <= *this); // ¼õÊý²»ÄÜ´óÓÚ±»¼õÊý 
+        assert(b <= *this); // å‡æ•°ä¸èƒ½å¤§äºŽè¢«å‡æ•°
         BigInteger c; c.s.clear();
         for (int i = 0, g = 0; ; i++) {
             if (g == 0 && i >= s.size() && i >= b.s.size()) break;
@@ -67,9 +67,9 @@ struct BigInteger {
         return c.clean();
     }
     BigInteger operator / (const BigInteger& b) const {
-        assert(b > 0);  // ³ýÊý±ØÐë´óÓÚ0 
-        BigInteger c = *this;       // ÉÌ:Ö÷ÒªÊÇÈÃc.sºÍ(*this).sµÄvectorÒ»Ñù´ó 
-        BigInteger m;               // ÓàÊý:³õÊ¼»¯Îª0 
+        assert(b > 0);  // é™¤æ•°å¿…é¡»å¤§äºŽ0
+        BigInteger c = *this;       // å•†:ä¸»è¦æ˜¯è®©c.så’Œ(*this).sçš„vectorä¸€æ ·å¤§
+        BigInteger m;               // ä½™æ•°:åˆå§‹åŒ–ä¸º0
         for (int i = s.size() - 1; i >= 0; i--) {
             m = m*BASE + s[i];
             c.s[i] = bsearch(b, m);
@@ -77,7 +77,7 @@ struct BigInteger {
         }
         return c.clean();
     }
-    BigInteger operator % (const BigInteger& b) const { //·½·¨Óë³ý·¨ÏàÍ¬ 
+    BigInteger operator % (const BigInteger& b) const { //æ–¹æ³•ä¸Žé™¤æ³•ç›¸åŒ
         BigInteger c = *this;
         BigInteger m;
         for (int i = s.size() - 1; i >= 0; i--) {
@@ -87,7 +87,7 @@ struct BigInteger {
         }
         return m;
     }
-    // ¶þ·Ö·¨ÕÒ³öÂú×ãbx<=mµÄ×î´óµÄx 
+    // äºŒåˆ†æ³•æ‰¾å‡ºæ»¡è¶³bx<=mçš„æœ€å¤§çš„x
     int bsearch(const BigInteger& b, const BigInteger& m) const {
         int L = 0, R = BASE - 1, x;
         while (1) {
@@ -101,7 +101,7 @@ struct BigInteger {
     BigInteger& operator *= (const BigInteger& b) { *this = *this * b; return *this; }
     BigInteger& operator /= (const BigInteger& b) { *this = *this / b; return *this; }
     BigInteger& operator %= (const BigInteger& b) { *this = *this % b; return *this; }
- 
+
     bool operator < (const BigInteger& b) const {
         if (s.size() != b.s.size()) return s.size() < b.s.size();
         for (int i = s.size() - 1; i >= 0; i--)
@@ -114,7 +114,7 @@ struct BigInteger {
     bool operator!=(const BigInteger& b) const { return b < *this || *this < b; }
     bool operator==(const BigInteger& b) const { return !(b < *this) && !(b > *this); }
 };
- 
+
 ostream& operator << (ostream& out, const BigInteger& x) {
     out << x.s.back();
     for (int i = x.s.size() - 2; i >= 0; i--) {
@@ -124,14 +124,14 @@ ostream& operator << (ostream& out, const BigInteger& x) {
     }
     return out;
 }
- 
+
 istream& operator >> (istream& in, BigInteger& x) {
     string s;
     if (!(in >> s)) return in;
     x = s;
     return in;
 }
- 
+
 int main()
 {
     int t;

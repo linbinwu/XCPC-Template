@@ -9,7 +9,7 @@ void tarjan(int u, int fa) {
     st[++top] = u;
     vis[u] = 1;
     for (auto &v: g[u]) {
-        if (v == fa) continue;//ÓĞÏòÍ¼È¥µô
+        if (v == fa) continue;//æœ‰å‘å›¾å»æ‰
         if (!dfn[v]) {
             tarjan(v, u);
             low[u] = min(low[u], low[v]);

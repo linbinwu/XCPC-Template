@@ -1,5 +1,5 @@
 struct Hash {
-    int b[MAX], tot;
+    int b[N], tot;
     void init() { tot = 0; }
     void insert(int x) { b[++tot] = x; }
     void build() {
@@ -9,8 +9,8 @@ struct Hash {
     int pos(int x) { return lower_bound(b + 1, b + 1 + tot, x) - b; }
 };
 
-const int MAX_N = MAX * 25;
-int rt[MAX], tot;
+const int MAX_N = N * 25;
+int rt[N], tot;
 int lc[MAX_N], rc[MAX_N], num[MAX_N];
 
 void update(int &now, int pre, int l, int r, int p) {

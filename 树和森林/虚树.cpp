@@ -1,7 +1,7 @@
-//ĞéÊ÷¿ÉÒÔ´¦Àí¶à´ÎÑ¯ÎÊ, ²¢ÇÒÃ¿´ÎÑ¯ÎÊÖ»ĞèÒªÊ÷ÉÏµÄK¸ö¹Ø¼üµã
-//½¨Á¢µÄĞéÊ÷ÄÜ±£Ö¤µãÊı < 2 * K
-//Èç¹û¶ÔĞéÊ÷×ödp, ×ÜÌå¸´ÔÓ¶ÈºÍ¡ÆKÓĞ¹Ø
-//¿¼ÂÇdpµÄÊ±ºò, ĞèÒªÍ¬Ê±¿¼ÂÇ·Ç¹Ø¼üµã¶Ô´ğ°¸µÄÓ°Ïì
+//è™šæ ‘å¯ä»¥å¤„ç†å¤šæ¬¡è¯¢é—®, å¹¶ä¸”æ¯æ¬¡è¯¢é—®åªéœ€è¦æ ‘ä¸Šçš„Kä¸ªå…³é”®ç‚¹
+//å»ºç«‹çš„è™šæ ‘èƒ½ä¿è¯ç‚¹æ•° < 2 * K
+//å¦‚æœå¯¹è™šæ ‘åšdp, æ€»ä½“å¤æ‚åº¦å’Œâˆ‘Kæœ‰å…³
+//è€ƒè™‘dpçš„æ—¶å€™, éœ€è¦åŒæ—¶è€ƒè™‘éå…³é”®ç‚¹å¯¹ç­”æ¡ˆçš„å½±å“
 
 int n;
 
@@ -38,11 +38,11 @@ int LCA(int x, int y) {
 }
 int getDis(int x, int y) { return dep[x] + dep[y] - 2 * dep[LCA(x, y)]; }
 
-//½¨Á¢ĞéÊ÷
-int tag[N];//tag[u] = 1 <=> ¹Ø¼üµã
-vector<int> g[N];//ĞéÊ÷±ß
+//å»ºç«‹è™šæ ‘
+int tag[N];//tag[u] = 1 <=> å…³é”®ç‚¹
+vector<int> g[N];//è™šæ ‘è¾¹
 void add_edge(int u, int v) { g[u].push_back(v); }
-int st[N], top, rt;//rtÎªĞéÊ÷¸ù
+int st[N], top, rt;//rtä¸ºè™šæ ‘æ ¹
 void insert(int u) {
     if (top == 1) {
         st[++top] = u;
@@ -71,7 +71,7 @@ void build(vector<int> &v) {
 void dp(int u) {
     //...
 }
-void clear(int u) {//Çå¿ÕĞéÊ÷±ßºÍ±ê¼Ç, Ò²¿ÉÒÔºÍdpºÏ²¢
+void clear(int u) {//æ¸…ç©ºè™šæ ‘è¾¹å’Œæ ‡è®°, ä¹Ÿå¯ä»¥å’Œdpåˆå¹¶
     for (auto &v: g[u]) clear(v);
     g[u].clear(); tag[u] = 0;
 }
@@ -87,16 +87,16 @@ int main() {
         int u, v; scanf("%d%d", &u, &v);
         add(u, v); add(v, u);
     }
-    //´Ë´¦¾àÀëÎª1, ËùÒÔÓÃdepÌæ´údis, dis[fa[rt] = 0] = -1
+    //æ­¤å¤„è·ç¦»ä¸º1, æ‰€ä»¥ç”¨depæ›¿ä»£dis, dis[fa[rt] = 0] = -1
     dep[0] = -1, rt = 1;
     dfs(rt, 0); dfs2(rt, rt);
 
 
     int Q; scanf("%d", &Q);
     while (Q--) {
-        int K; scanf("%d", &K);//¶ÁÈ¡¹Ø¼üµã
+        int K; scanf("%d", &K);//è¯»å–å…³é”®ç‚¹
         for (int i = 1; i <= K; i++) scanf("%d", &a[i]);
-        //¹¹½¨ĞéÊ÷
+        //æ„å»ºè™šæ ‘
         build(a);
         solve();
     }

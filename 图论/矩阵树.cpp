@@ -1,16 +1,16 @@
-//¼ÆËãÉú³ÉÊ÷¸öÊı
-//¼´Çó\sum_{Tree} \prod_{e ¡Ê Tree} num(e)
+//è®¡ç®—ç”Ÿæˆæ ‘ä¸ªæ•°
+//å³æ±‚\sum_{Tree} \prod_{e âˆˆ Tree} num(e)
 
-ll gauss(int n, ll K[][N]) {//Çó¾ØÕóKµÄn-1½×Ë³ĞòÖ÷×ÓÊ½
+ll gauss(int n, ll K[][N]) {//æ±‚çŸ©é˜µKçš„n-1é˜¶é¡ºåºä¸»å­å¼
     ll res = 1;
-    for (int i = 1; i <= n - 1; i++) {//Ã¶¾ÙÖ÷¶Ô½ÇÏßÉÏµÚi¸öÔªËØ
-        for (int j = i + 1; j <= n - 1; j++) {//Ã¶¾ÙÊ£ÏÂµÄĞĞ
-            while (K[j][i]) {//Õ·×ªÏà³ı
+    for (int i = 1; i <= n - 1; i++) {//æšä¸¾ä¸»å¯¹è§’çº¿ä¸Šç¬¬iä¸ªå…ƒç´ 
+        for (int j = i + 1; j <= n - 1; j++) {//æšä¸¾å‰©ä¸‹çš„è¡Œ
+            while (K[j][i]) {//è¾—è½¬ç›¸é™¤
                 int t = K[i][i] / K[j][i];
-                for (int k = i; k <= n - 1; k++)//×ªÎªµ¹Èı½Ç
+                for (int k = i; k <= n - 1; k++)//è½¬ä¸ºå€’ä¸‰è§’
                     K[i][k] = (K[i][k] - t * K[j][k] + mod) % mod;
-                swap(K[i], K[j]);//½»»»i¡¢jÁ½ĞĞ
-                res = -res;//È¡¸º
+                swap(K[i], K[j]);//äº¤æ¢iã€jä¸¤è¡Œ
+                res = -res;//å–è´Ÿ
             }
         }
         res = (res * K[i][i]) % mod;

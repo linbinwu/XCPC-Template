@@ -5,7 +5,7 @@ int ans[N], res;
 
 struct node {
     int l, r, id;
-    bool operator < (const node &rhs) const {//ÆæÅ¼ÓÅ»¯
+    bool operator < (const node &rhs) const {//å¥‡å¶ä¼˜åŒ–
         return belong[l] ^ belong[rhs.l] ? belong[l] < belong[rhs.l] :
                ((belong[l] & 1) ? r < rhs.r : r > rhs.r);
     }

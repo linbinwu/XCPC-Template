@@ -100,8 +100,24 @@ void getPow(ll *f, ll *g, int n, ll k) {
     for (int i = 0, len = getLen(n); i < len; i++) a[i] = 0;
 }
 
+void getPower(ll *f, ll *g, int n, ll k1, ll k2) {//k1为原始模数, k2为模phi(mod - 1)
+    int pos = 0; while (pos < n && !f[pos]) pos++;
+    if (k1 * pos >= n) { for (int i = 0; i < n; i++) g[i] = 0; return; }
+    static ll a[N], b[N];
+    int m = n - pos, inv = qpow(f[pos], mod - 2, mod), t = qpow(f[pos], k2, mod);
+    for (int i = 0; i < m; i++) a[i] = f[i + pos] * inv % mod;
+    getLn(a, b, m);
+    for (int i = 0; i < m; i++) b[i] = b[i] * k1 % mod;
+    getExp(b, g, m);
+    for (int i = 0; i < m; i++) g[i] = g[i] * t % mod;
+    pos = min(1ll * pos * k1, 1ll * n);
+    for (int i = n - 1; i >= pos; i--) g[i] = g[i - pos];
+    for (int i = pos - 1; i >= 0; i--) g[i] = 0;
+    for (int i = 0, len = getLen(m); i < len; i++) a[i] = b[i] = 0;
+}
+
 void fenzhiFFT(ll *f, ll *g, int n) {
-    //����g[i] = \sum_{j = 1}^{i} g[i - j] * f[j]
+    //计算g[i] = \sum_{j = 1}^{i} g[i - j] * f[j]
     static ll a[N];
     for (int i = 1; i < n; i++) a[i] = (mod - f[i]) % mod;
     a[0] = 1;
@@ -162,3 +178,22 @@ void getSqrt(ll *f, ll *g, int n) {
     for (int i = 0; i < len; i++) a[i] = b[i] = 0;
 }
 
+//分治乘法
+void solve(ll *f1, ll *f2, ll *g, int l, int r) {
+    if (l == r) return (void) (g[(l - 1) * 2] = f1[l], g[(l - 1) * 2 + 1] = f2[l]);
+    int mid = (l + r) / 2;
+    solve(f1, f2, g, l, mid);
+    solve(f1, f2, g, mid + 1, r);
+    static ll a[N], b[N];
+    int len1 = mid - l + 2, len2 = r - mid + 1;
+    for (int i = 0; i < len1; i++) a[i] = g[(l - 1) * 2 + i];
+    for (int i = 0; i < len2; i++) b[i] = g[mid * 2 + i];
+    int n = r - l + 2, len = getLen(n);
+    NTT(a, len, 1), NTT(b, len, 1);
+    for (int i = 0; i < len; i++) a[i] = a[i] * b[i] % mod;
+    NTT(a, len, -1);
+    for (int i = 0; i < n; i++) g[(l - 1) * 2 + i] = a[i];
+    for (int i = n; i < len; i++) g[(l - 1) * 2 + i] = 0;
+    for (int i = 0; i < len; i++) a[i] = b[i] = 0;
+
+}

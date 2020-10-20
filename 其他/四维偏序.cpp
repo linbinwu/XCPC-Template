@@ -1,8 +1,8 @@
-//ËÄÎ¬Æ«Ğò²é×î´óÖµ
+//å››ç»´ååºæŸ¥æœ€å¤§å€¼
 int N;
 struct node {
     int a, b, c, d;
-    inline bool operator < (const node &rhs) const {//ËÄÎ¬ÅÅĞòµôÒ»Î¬
+    inline bool operator < (const node &rhs) const {//å››ç»´æ’åºæ‰ä¸€ç»´
         return a < rhs.a || (a == rhs.a && (b < rhs.b || (b == rhs.b && (c < rhs.c || (c == rhs.c && d < rhs.d)))));
     }
 } nod[MAX];
@@ -58,7 +58,7 @@ inline void push_up(int u) {
     }
 }
 
-inline int build(int l, int r, int type) {//½¨Ê÷
+inline int build(int l, int r, int type) {//å»ºæ ‘
     if (l > r) return 0;
     cmptype = type;
     nth_element(p + l, p + m, p + r + 1);
@@ -70,18 +70,18 @@ inline int build(int l, int r, int type) {//½¨Ê÷
     return u;
 }
 
-inline void pia(int u, int num) {//ÅÄ±â»ØÂ¯ÖØ×ö
+inline void pia(int u, int num) {//æ‹æ‰å›ç‚‰é‡åš
     if (lc) pia(lc, num);
     p[t[lc].siz + num + 1] = t[u].pos, rub[++top] = u;
     if (rc) pia(rc, t[lc].siz + num + 1);
 }
 
-inline void check(int &u, int type) {//¼ì²éÊÇ·ñÆ½ºâ£¬²»Æ½ºâÔòĞèÒªÖØ½¨
+inline void check(int &u, int type) {//æ£€æŸ¥æ˜¯å¦å¹³è¡¡ï¼Œä¸å¹³è¡¡åˆ™éœ€è¦é‡å»º
     if (t[u].siz * alpha < t[lc].siz || t[u].siz * alpha < t[rc].siz) pia(u, 0), u = build(1, t[u].siz, type);
 }
 
 inline void insert(int &u, int type, point tp) {
-    if (!u) {//ĞÂµã
+    if (!u) {//æ–°ç‚¹
         u = newnode();
         lc = rc = 0;
         t[u].pos = tp;
@@ -95,15 +95,15 @@ inline void insert(int &u, int type, point tp) {
     check(u, type);
 }
 
-inline bool out(const point &l, const point &r, const point &L, const point &R) {//ÍêÈ«ÔÚÍâÃæ
+inline bool out(const point &l, const point &r, const point &L, const point &R) {//å®Œå…¨åœ¨å¤–é¢
     return l.x > R.x || l.y > R.y || l.z > R.z || r.x < L.x || r.y < L.y || r.z < L.z;
 }
 
-inline bool in(const point &l, const point &r, const point &L, const point &R) {//ÍêÈ«ÔÚÀïÃæ
+inline bool in(const point &l, const point &r, const point &L, const point &R) {//å®Œå…¨åœ¨é‡Œé¢
     return l.x <= L.x && R.x <= r.x && l.y <= L.y && R.y <= r.y && l.z <= L.z && R.z <= r.z;
 }
 
-inline int query(int u, point ql, point qr) {//²éÑ¯×î´óÖµ
+inline int query(int u, point ql, point qr) {//æŸ¥è¯¢æœ€å¤§å€¼
     if (!u || out(ql, qr, t[u].lpos, t[u].rpos)) return 0;
     if (in(ql, qr, t[u].lpos, t[u].rpos)) return t[u].mx;
     int res = 0;

@@ -3,14 +3,14 @@ struct Complex {
 };
 ll w;
 
-Complex mul(Complex a, Complex b, ll mod) {//¸´Êý³Ë·¨
+Complex mul(Complex a, Complex b, ll mod) {//å¤æ•°ä¹˜æ³•
     Complex ans = {0, 0};
     ans.x = ((a.x * b.x % mod + a.y * b.y % mod * w % mod) % mod + mod) % mod;
     ans.y = ((a.x * b.y % mod + a.y * b.x % mod) % mod + mod) % mod;
     return ans;
 }
 
-ll binpow_real(ll a, ll b, ll mod) {//Êµ²¿¿ìËÙÃÝ
+ll binpow_real(ll a, ll b, ll mod) {//å®žéƒ¨å¿«é€Ÿå¹‚
     ll ans = 1;
     while (b) {
         if (b & 1) ans = ans * a % mod;
@@ -20,7 +20,7 @@ ll binpow_real(ll a, ll b, ll mod) {//Êµ²¿¿ìËÙÃÝ
     return ans % mod;
 }
 
-ll binpow_imag(Complex a, ll b, ll mod) {//Ðé²¿¿ìËÙÃÝ
+ll binpow_imag(Complex a, ll b, ll mod) {//è™šéƒ¨å¿«é€Ÿå¹‚
     Complex ans = {1, 0};
     while (b) {
         if (b & 1) ans = mul(ans, a, mod);
@@ -30,12 +30,12 @@ ll binpow_imag(Complex a, ll b, ll mod) {//Ðé²¿¿ìËÙÃÝ
     return ans.x % mod;
 }
 
-ll cipolla(ll n, ll mod) {//n = 0ÍâÃæÌØÅÐ
+ll cipolla(ll n, ll mod) {//n = 0å¤–é¢ç‰¹åˆ¤
     n %= mod;
     if (mod == 2) return n;
     if (binpow_real(n, (mod - 1) / 2, mod) == mod - 1) return -1;
     ll a;
-    while (1) {//Éú³ÉËæ»úÊýÔÙ¼ìÑéÕÒµ½Âú×ã·Ç¶þ´ÎÊ£ÓàµÄa
+    while (1) {//ç”Ÿæˆéšæœºæ•°å†æ£€éªŒæ‰¾åˆ°æ»¡è¶³éžäºŒæ¬¡å‰©ä½™çš„a
         a = rand() % mod;
         w = ((a * a % mod - n) % mod + mod) % mod;
         if (binpow_real(w, (mod - 1) / 2, mod) == mod - 1) break;

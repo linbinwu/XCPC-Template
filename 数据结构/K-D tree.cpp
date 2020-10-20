@@ -93,12 +93,7 @@ void init() {
 }
 
 int main() {
-#ifdef ACM_LOCAL
-    freopen("input.in", "r", stdin);
-    freopen("output.out", "w", stdout);
-    auto start_clock = clock();
-#endif
-    //ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
     init();
     scanf("%d", &N);
     while (1) {
@@ -114,8 +109,6 @@ int main() {
         }
     }
 
-#ifdef ACM_LOCAL
-    cerr << (double)(clock() - start_clock) / CLOCKS_PER_SEC << "s" << endl;
-#endif
+
     return 0;
 }

@@ -1,7 +1,7 @@
 struct Trie {
-    static const int MAX_N = MAX * 35;
+    static const int MAX_N = N * 35;
     static const int MAX_BIT = 28;
-    int rt[MAX];
+    int rt[N];
     int ch[MAX_N][2], sum[MAX_N], tot;
     void insert(int now, int pre, ll val) {
         rt[now] = ++tot;

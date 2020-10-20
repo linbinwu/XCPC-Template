@@ -43,7 +43,7 @@ void update(int u, int ql, int qr, int k) {
         t[u].sum += k;
         return;
     }
-    
+
 }
 
 int main() {
