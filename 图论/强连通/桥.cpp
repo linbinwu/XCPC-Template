@@ -1,6 +1,6 @@
 vector<int> g[N];
 int low[N], dfn[N], fa[N], dfnt, cnt_bridge;
-bool isbridge[N];
+bool isbridge[N];//(x, fa[x])为桥
 
 void tarjan(int u, int par) {
     fa[u] = par;
