@@ -7,6 +7,7 @@ ll C(ll n, ll m) {
 }
 
 
+//预处理版本
 ll qpow(ll a, ll b) {
     ll res = 1;
     while (b) {
