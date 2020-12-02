@@ -1,5 +1,7 @@
-//计算生成树个数
-//即求\sum_{Tree} \prod_{e ∈ Tree} num(e)
+/*
+计算生成树个数
+即求\sum_{Tree} \prod_{e ∈ Tree} num(e)
+*/
 
 ll gauss(int n, ll K[][N]) {//求矩阵K的n-1阶顺序主子式
     ll res = 1;
