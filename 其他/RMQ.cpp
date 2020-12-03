@@ -9,7 +9,7 @@ void build(int siz) {
 			dp[i][j] = min(dp[i][j - 1], dp[i + (1 << (j - 1))][j - 1]);
 }
 
-int query(int ql, int qr) {
+int queryMin(int ql, int qr) {
 	int k = (int)log2(qr - ql + 1);
 	return min(dp[ql][k], dp[qr - (1 << k) + 1][k]);
 }
