@@ -35,6 +35,7 @@ void dfs(int u) {
             maxp[rt = 0] = N; getRt(v, 0, siz[v]);
             dfs(rt);
         }
+    vis[u] = 0;//多组清空
 }
 
 int main() {

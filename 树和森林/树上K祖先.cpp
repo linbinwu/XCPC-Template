@@ -1,4 +1,4 @@
-//倍增KFA
+//倍增KFA, 空间大点, 但是好写
 vector<int> g[N];
 
 int anc[N][20];

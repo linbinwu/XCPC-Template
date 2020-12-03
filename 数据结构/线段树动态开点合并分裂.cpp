@@ -30,7 +30,6 @@ void update(int &u, int l, int r, int p, ll k) {
     if (p <= mid) update(lc[u], l, mid, p, k);
     else update(rc[u], mid + 1, r, p, k);
     push_up(u);
-
 }
 ll querySum(int u, int l, int r, int ql, int qr) {
     if (!u) return 0;
