@@ -47,9 +47,15 @@ void NTT(ll *A, int len, int type) {
     }
 }
 
-void getDer(ll *f, ll *g, int len) { for (int i = 1; i < len; i++) g[i - 1] = f[i] * i % mod; g[len - 1] = 0; }
+void getDer(ll *f, ll *g, int len) {
+    for (int i = 1; i < len; i++) g[i - 1] = f[i] * i % mod;
+    g[len - 1] = 0;
+}
 
-void getInt(ll *f, ll *g, int len) { for (int i = 1; i < len; i++) g[i] = f[i - 1] * qpow(i, mod - 2, mod) % mod; g[0] = 0; }
+void getInt(ll *f, ll *g, int len) {
+    for (int i = 1; i < len; i++) g[i] = f[i - 1] * qpow(i, mod - 2, mod) % mod;
+    g[0] = 0;
+}
 
 void getInv(ll *f, ll *g, int n) {
     if (n == 1) return (void) (g[0] = qpow(f[0], mod - 2, mod));
@@ -101,8 +107,12 @@ void getPow(ll *f, ll *g, int n, ll k) {
 }
 
 void getPower(ll *f, ll *g, int n, ll k1, ll k2) {//k1为原始模数, k2为模phi(mod - 1)
-    int pos = 0; while (pos < n && !f[pos]) pos++;
-    if (k1 * pos >= n) { for (int i = 0; i < n; i++) g[i] = 0; return; }
+    int pos = 0;
+    while (pos < n && !f[pos]) pos++;
+    if (k1 * pos >= n) {
+        for (int i = 0; i < n; i++) g[i] = 0;
+        return;
+    }
     static ll a[N], b[N];
     int m = n - pos, inv = qpow(f[pos], mod - 2, mod), t = qpow(f[pos], k2, mod);
     for (int i = 0; i < m; i++) a[i] = f[i + pos] * inv % mod;
@@ -126,13 +136,18 @@ void fenzhiFFT(ll *f, ll *g, int n) {
     for (int i = 0; i < n; i++) g[i] = g[i] * g0 % mod, a[i] = 0;
 }
 
-struct Complex { ll x, y; }; ll w;
+struct Complex {
+    ll x, y;
+};
+ll w;
+
 Complex mul(Complex a, Complex b, ll mod) {
     Complex ans = {0, 0};
     ans.x = ((a.x * b.x % mod + a.y * b.y % mod * w % mod) % mod + mod) % mod;
     ans.y = ((a.x * b.y % mod + a.y * b.x % mod) % mod + mod) % mod;
     return ans;
 }
+
 ll binpow_imag(Complex a, ll b, ll mod) {
     Complex ans = {1, 0};
     while (b) {
@@ -142,6 +157,7 @@ ll binpow_imag(Complex a, ll b, ll mod) {
     }
     return ans.x % mod;
 }
+
 ll cipolla(ll n, ll mod) {
     srand(time(0));
     n %= mod;
@@ -156,6 +172,7 @@ ll cipolla(ll n, ll mod) {
     Complex x = {a, 1};
     return binpow_imag(x, (mod + 1) / 2, mod);
 }
+
 void getSqrt(ll *f, ll *g, int n) {
     if (n == 1) {
         if (f[0] == 0) g[0] = f[0];
